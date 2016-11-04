@@ -50,7 +50,7 @@ module OmniAuth
 
           def validate(idp_cert_fingerprint, soft = true)
             # get cert from response
-            base64_cert = self.elements["//ds:X509Certificate"].text
+            base64_cert = REXML::XPath.first(self, "//ds:X509Certificate", {"ds"=>DSIG}).text
             cert_text   = Base64.decode64(base64_cert)
             cert        = OpenSSL::X509::Certificate.new(cert_text)
 

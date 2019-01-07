@@ -31,8 +31,6 @@ module OmniAuth
           validate_callback_params(@request)
           wsfed_callback = request.params['wresult']
 
-          p 'wsfed_callback:'
-          p wsfed_callback
           signed_document = OmniAuth::Strategies::WSFed::XMLSecurity::SignedDocument.new(wsfed_callback, options)
           signed_document.validate(get_fingerprint, false)
 
